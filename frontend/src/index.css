@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply font-bold text-[26px] text-center;
+  }
+  h2 {
+    @apply text-[22px] font-bold text-center;
+  }
+  h3 {
+    @apply text-[20px] font-bold text-center;
+  }
+  h4 {
+    @apply text-[18px] font-bold text-center;
+  }
+  h5 {
+    @apply text-[16px] font-bold text-center;
+  }
+  h6 {
+    @apply text-[14px] font-bold text-center;
+  }
+  input {
+    @apply rounded border focus:border-red-900 focus:placeholder:text-red-900 caret-red-900 w-full p-[5px] px-[10px] md:text-[16px] text-[12px] outline-none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(105, 105, 105);
+  border-radius: 1000px;
+  /* margin-block: 10px; */
+  border: 2px solid rgb(149, 149, 149);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(149, 149, 149);
+  border-radius: 1000px;
+  border: 2px solid rgb(190, 190, 190);
+  cursor: pointer;
+  margin: 100px;
+}

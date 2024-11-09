@@ -1,0 +1,51 @@
+export const expenseSummary = [
+  {
+    id: 1,
+    name: "John Doe",
+    avatar: "https://example.com/avatars/john.jpg",
+    amount: 100,
+    transactionType: "give",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    avatar: "https://example.com/avatars/jane.jpg",
+    amount: 50,
+    transactionType: "take",
+  },
+  {
+    id: 3,
+    name: "Alice Johnson",
+    avatar: "https://example.com/avatars/alice.jpg",
+    amount: 200,
+    transactionType: "give",
+  },
+  {
+    id: 4,
+    name: "Bob Brown",
+    avatar: "https://example.com/avatars/bob.jpg",
+    amount: 100,
+    transactionType: "take",
+  },
+  {
+    id: 5,
+    name: "Carol White",
+    avatar: "https://example.com/avatars/carol.jpg",
+    amount: 150,
+    transactionType: "give",
+  },
+  {
+    id: 6,
+    name: "Mark Wilson",
+    avatar: "https://example.com/avatars/mark.jpg",
+    amount: 100,
+    transactionType: "take",
+  },
+  {
+    id: 7,
+    name: "Emily Davis",
+    avatar: "https://example.com/avatars/emily.jpg",
+    amount: 200,
+    transactionType: "take",
+  },
+];
