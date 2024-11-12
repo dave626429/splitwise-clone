@@ -1,6 +1,8 @@
 import express from "express";
+import morgan from "morgan";
 import { config } from "dotenv";
-import { sendMail } from "./services/mailServices.js";
+import router from "./routers/routes.js";
+import { connectMongoDB } from "./services/dbServices.js";
 
 config({
   path: process.env.NODE_ENV === "production" ? ".env.production" : ".env",
@@ -8,21 +10,16 @@ config({
 
 const app = express();
 
+// handles req.body
+app.use(express.json());
+
+app.use(morgan("dev"));
+
+app.use("/api/v1", router);
+
 const { PORT } = process.env;
-console.log(PORT);
-
-app.get("/send", async (req, res) => {
-  try {
-    const result = await sendMail(
-      "davindersingh626429+nodemailertest@gmail.com"
-    );
-
-    res.send(result);
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 app.listen(PORT, () => {
   console.log(`The backend started at PORT : ${PORT}`);
+  connectMongoDB();
 });

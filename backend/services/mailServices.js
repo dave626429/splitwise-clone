@@ -15,14 +15,14 @@ const {
   REFRESH_TOKEN,
 } = process.env;
 
-console.log({
-  SMTP_USER,
-  // SMTP_PASS,
-  CLIENT_ID,
-  CLIENT_SECRET,
-  REDIRECT_URI,
-  REFRESH_TOKEN,
-});
+// console.log({
+//   SMTP_USER,
+//   // SMTP_PASS,
+//   CLIENT_ID,
+//   CLIENT_SECRET,
+//   REDIRECT_URI,
+//   REFRESH_TOKEN,
+// });
 
 // OAuth2 configuration
 const oauth2Client = new google.auth.OAuth2(
