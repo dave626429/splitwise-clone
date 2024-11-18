@@ -3,7 +3,8 @@ import Main from "../main/Main";
 import Sidebar from "../sidebar/Sidebar";
 
 export default function Layout() {
-  return <Login />;
+  console.log("Layout");
+  // return <Login />;
 
   return (
     <div id="app-layout" className=" relative flex w-screen h-screen ">

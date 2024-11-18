@@ -1,15 +1,27 @@
+import { useNavigate } from "react-router-dom";
 import DashboardIcon from "../../assets/dashboard.svg?react";
 import EventLogsIcon from "../../assets/eventlogs.svg?react";
 import FriendsIcon from "../../assets/friends.svg?react";
 import GroupsIcon from "../../assets/groups.svg?react";
 import LogoutIcon from "../../assets/logout.svg?react";
 import SettingsIcon from "../../assets/settings.svg?react";
+import apiClient from "../../ultils/apiClient";
 import NavLink from "../navlink/NavLink";
 
 export default function Navigation() {
+  const navigate = useNavigate();
+
+  const handleLogOut = async () => {
+    console.log("Logout Logic");
+    const res = await apiClient.post("/auth/logout");
+
+    // ALl cookies are cleared
+    if (res.status === 204) return navigate("/login");
+  };
+
   return (
     <nav className="flex flex-col items-center sm:justify-between flex-1 py-[40px] w-full border-e">
-      {/* Nav upper sec */}
+      {/* Nav upper section */}
       <div className="app-nav-upper-sec flex flex-col gap-y-[8px]">
         <NavLink to="/dashboard" label="Dashboard" icon={DashboardIcon} />
         <NavLink to="/eventlogs" label="Event Logs" icon={EventLogsIcon} />
@@ -17,10 +29,15 @@ export default function Navigation() {
         <NavLink to="/groups" label="Groups" icon={GroupsIcon} />
       </div>
 
-      {/* Nav bottom sec */}
+      {/* Nav bottom section */}
       <div className="app-nav-bottom-sec flex flex-col gap-y-[8px]">
         <NavLink to="/settings" label="Settings" icon={SettingsIcon} />
-        <NavLink to="/logout" label="Logout" icon={LogoutIcon} />
+        <NavLink
+          to="/logout"
+          label="Logout"
+          icon={LogoutIcon}
+          onClick={handleLogOut}
+        />
       </div>
     </nav>
   );

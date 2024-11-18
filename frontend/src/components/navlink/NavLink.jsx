@@ -2,12 +2,13 @@ import React, { memo } from "react";
 import { NavLink as RRDNavLink } from "react-router-dom";
 
 function NavLink(props) {
-  const { to, label, icon: Icon } = props;
+  const { to, label, icon: Icon, ...rest } = props;
   return (
     <RRDNavLink
       id="app-nav-link-dashboard"
       className="relative sm:w-[50px] sm:h-[50px] lg:w-[200px] flex max-lg:justify-center items-center"
       to={to}
+      {...rest}
     >
       {({ isActive }) => (
         <>

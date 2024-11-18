@@ -1,76 +1,41 @@
-import { memo, useRef, useState } from "react";
+import React from "react";
 import CloseIcon from "../../assets/close.svg?react";
 
-// incomplete
-function ErrorAlert(props) {
-  const { className, message } = props;
-  const [showError, setShowError] = useState(null);
-  const timerRef = useRef(null);
-
+/**
+ * @Component
+ * @description Displays a list of error messages in an alert box.
+ *
+ * @param {Object} props - The component properties.
+ * @param {string[]} [props.messages=[]] - An array of error messages to display. Defaults to an empty array if no messages are provided.
+ * @param {Object} [props.rest] - Additional props are passed to the component's root element, allowing for flexible styling and additional attributes.
+ *
+ * @returns {JSX.Element} Alert component displaying error messages.
+ *
+ * @example
+ * // Basic usage of ErrorAlert component
+ * <ErrorAlert messages={['Error 1', 'Error 2']} className="custom-class" />
+ */
+export default function ErrorAlert({ messages = [], ...props }) {
   return (
     <div
-      className={`flex items-center justify-between bg-red-200 md:text-[16px] text-[12px] rounded ${
-        showError
-          ? "animate-[expanddown_0.3s_ease-out]"
-          : showError !== null
-          ? "animate-[collapse_0.3s_ease-out] opacity-0"
-          : "hidden"
-      } ${className}`}
+      id="error-dropdown"
+      className={`fixed m-5 flex justify-between items-center place-content-center max-md:text-[12px] bg-red-500 text-white rounded ${props.className}`}
     >
-      {message}
-      <button
-        className="cursor-pointer"
-        onClick={() => {
-          clearTimeout(timerRef.current);
-          setShowError((error) => false);
+      <ul className="list-disc pl-[30px]">
+        {messages?.map((message, i) => (
+          <li key={`error-message-${i}`}>
+            <p className="my-[14px]">{message}</p>
+          </li>
+        ))}
+      </ul>
 
-          // to avoid animate-collapse to be visible, when opening the modal again.
-          setTimeout(() => {
-            setShowError((error) => null);
-          }, 300);
+      <CloseIcon
+        className="min-w-[20px] w-[20px] m-[10px] fill-white cursor-pointer"
+        onClick={() => {
+          console.log("click");
+          props.onClose();
         }}
-      >
-        <CloseIcon className="w-[24px]" />
-      </button>
+      />
     </div>
   );
 }
-
-export default memo(ErrorAlert);
-
-// /**
-//    * Renders an error message component with animation and close button.
-//    *
-//    * @param {Object} props - The properties passed to the component.
-//    * @param {string} props.message - The error message to be displayed.
-//    * @returns {JSX.Element} A div element containing the error message and close button.
-//    */
-//   const ErrorMessage = (props) => {
-//     return (
-//       <div
-//         className={`flex items-center justify-between bg-red-200 md:text-[16px] text-[12px] rounded ${
-//           showError
-//             ? "animate-[expanddown_0.3s_ease-out]"
-//             : showError !== null
-//             ? "animate-[collapse_0.3s_ease-out] opacity-0"
-//             : "hidden"
-//         } ${props.className}`}
-//       >
-//         {props.message}
-//         <button
-//           className="cursor-pointer"
-//           onClick={() => {
-//             clearTimeout(timerRef.current);
-//             setShowError((error) => false);
-
-//             // to avoid animate-collapse to be visible, when opening the modal again.
-//             setTimeout(() => {
-//               setShowError((error) => null);
-//             }, 300);
-//           }}
-//         >
-//           <CloseIcon className="w-[24px]" />
-//         </button>
-//       </div>
-//     );
-//   };

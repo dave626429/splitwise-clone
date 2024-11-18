@@ -1,8 +1,18 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(), svgr()],
+export default defineConfig(({ mode }) => {
+  const { VITE_API_DEFAULT_URI } = loadEnv(mode, process.cwd());
+  console.log(VITE_API_DEFAULT_URI);
+
+  return {
+    plugins: [react(), svgr()],
+    server: {
+      proxy: {
+        "/api": VITE_API_DEFAULT_URI,
+      },
+    },
+  };
 });

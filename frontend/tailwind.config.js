@@ -35,17 +35,17 @@ export default {
       },
       keyframes: {
         expanddown: {
-          "0%": { maxHeight: "0px", opacity: 0 },
-          "100%": { maxHeight: "100%", opacity: 1 },
+          "0%": { opacity: 0, transform: "translateY(-100%)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
         },
         collapse: {
-          "0%": { maxHeight: "100%", opacity: 1 },
-          "100%": { maxHeight: "0px", opacity: 0 },
+          "0%": { opacity: 1, transform: "translateY(0)" },
+          "100%": { opacity: 0, transform: "translateY(-100%)" },
         },
       },
-      // animation: {
-      //   expanddown: "expanddown 1s ",
-      // },
+      animation: {
+        expanddown: "expanddown 1s ",
+      },
     },
   },
   plugins: [],
